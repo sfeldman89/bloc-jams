@@ -70,8 +70,8 @@ html {
 
 .clearfix::after {
    clear: both;
-}
-
+  
+  
   .container {
      margin: 0 auto;
      max-width: 64rem;
@@ -104,5 +104,4 @@ html {
      .column.half { width: 50%; }
      .column.third { width: 33.3%; }
      .column.fourth { width: 25%; }
-     .column.flow-opposite { float: right; }  
-}
+     .column.flow-opposite { float: right; } 
