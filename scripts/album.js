@@ -56,13 +56,18 @@ var albumMacklemore = {
      return template;
  };
 
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
  var setCurrentAlbum = function(album) {
      // #1
-     var albumTitle = document.getElementsByClassName('album-view-title')[0];
-     var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-     var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-     var albumImage = document.getElementsByClassName('album-cover-art')[0];
-     var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+     albumTitle.firstChild.nodeValue = album.name;
+     albumArtist.firstChild.nodeValue = album.artist;
+     albumReleaseInfo.firstChild.nodeValue = album.year + " " + album.label;
+     albumImage.setAttribute("src", album.albumArtUrl);
  
      // #2
      albumTitle.firstChild.nodeValue = album.title;
@@ -81,16 +86,14 @@ var albumMacklemore = {
  
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
- };
-
-document.getElementById("album-cover-art").addEventListener("click", changeAlbum);
-
-function changeAlbum() {
-    if(album.Title="The Colors") {
-        setCurrentAlbum(albumMarconi);
-    } else if(album.Title="albumMarconi") {
-        setCurrentAlbum(albumMacklemore);
-    } else {
-        setCurrentAlbum(albumPicasso);
-    }
-}
+     
+     var albums = [albumPicasso, albumMarconi, albumMacklemore];
+     var index = 1;
+     albumImage.addEventListener("click", function(changeAlbum) {
+         setCurrentAlbum(albums[index]);
+         index++;
+         if(index == albums.length) {
+             index = 0;
+         }
+     });
+ }
