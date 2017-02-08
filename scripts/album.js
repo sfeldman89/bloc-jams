@@ -28,6 +28,22 @@ var albumPicasso = {
      ]
  };
 
+var albumMacklemore = {
+    title: "The Heist",
+    artist: "Macklemore and Ryan Lewis",
+    label: "none",
+    year: "2012",
+    albumArtUrl: "assets/images/album_covers/Macklemore.png",
+    songs: [
+        { title: "Ten Thousand Hours", duration: "4:10"},
+        { title: "Can't Hold Us ft Ray Dalton", duration: "4:18"},
+        { title: "Thrift Shop ft Wanz", duration: "3:56"},
+        { title: "Thin line ft Buffalo Madonna", duration: "4:16"},
+        { title: "Same Love ft Mary Lambert", duration: "5:20"},
+        { title: "Make the Money", duration: "3:45"}
+    ]
+};
+
  var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -66,3 +82,15 @@ var albumPicasso = {
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
  };
+
+document.getElementById("album-cover-art").addEventListener("click", changeAlbum);
+
+function changeAlbum() {
+    if(album.Title="The Colors") {
+        setCurrentAlbum(albumMarconi);
+    } else if(album.Title="albumMarconi") {
+        setCurrentAlbum(albumMacklemore);
+    } else {
+        setCurrentAlbum(albumPicasso);
+    }
+}
