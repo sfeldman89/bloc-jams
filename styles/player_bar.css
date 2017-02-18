@@ -8,7 +8,7 @@
      z-index: 100;
  }
  
-.player-bar a {
+ .player-bar a {
      font-size: 1.1rem;
      vertical-align: middle;
  }
@@ -37,7 +37,8 @@
      text-align: left;
      padding-right: 1rem;
  }
-  
+ 
+ 
  .player-bar .main-controls .previous {
      margin-right: 16.5%;
  }
@@ -52,7 +53,8 @@
      text-align: center;
      position: relative;
  }
-  
+ 
+ 
  .player-bar .currently-playing .song-name,
  .player-bar .currently-playing .artist-name,
  .player-bar .currently-playing .artist-song-mobile {
@@ -76,7 +78,6 @@
  .player-bar .currently-playing .artist-song-mobile {
      display: none;
  }
-
 
  .seek-control {
      position: relative;
@@ -116,13 +117,15 @@
      background-color: white;
      left: 36%;
      top: 50%;
+     /* #1 */
      margin-left: -0.25rem;
      margin-top: -0.25rem;
      border-radius: 50%;
      cursor: pointer;
-     -webkit-transition: all 100ms ease-in-out;
-        -moz-transition: all 100ms ease-in-out;
-             transition: all 100ms ease-in-out;
+     transition: width 100ms ease-in-out,
+                 height 100ms ease-in-out,
+                 margin-top 100ms ease-in-out,
+                 margin-left 100ms ease-in-out;
  }
  
  .seek-bar:hover .thumb {
@@ -148,8 +151,8 @@
      width: 5.75rem;
      vertical-align: middle;
  }
-
-@media (max-width: 640px) {
+ 
+ @media (max-width: 640px) {
      .player-bar {
          padding: 1rem;
          background-color: rgba(0,0,0,0.6);
