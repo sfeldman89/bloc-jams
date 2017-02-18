@@ -32,7 +32,7 @@ var createSongRow = function(songNumber, songName, songLength) {
         '<tr class="album-view-song-item">'
       + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
       + '  <td class="song-item-title">' + songName + '</td>'
-      + '  <td class="song-item-duration">' + songLength + '</td>'
+      + '  <td class="song-item-duration">' + filterTimeCode(songLength) + '</td>'
       + '</tr>'
       ;
  
@@ -122,6 +122,32 @@ var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
      }
  };
 
+var setCurrentTimeInPlayerBar = function(currentTime) {
+    updateSeekBarWhileSongPlays();
+    $currentTimeElement.text(filterTimeCode(currentTime)); 
+};
+
+var setTotalTimeInPlayerBar = function(totalTime) {
+    $totalTimeElement.text(filterTimeCode(totalTime));
+    updatePlayerBarSong();
+};
+
+var filterTimeCode = function(timeInSeconds) {
+    var seconds = Number.parseFloat(timeInSeconds);
+    var wholeSeconds = Math.floor(seconds);
+    var minutes = Math.floor(wholeSeconds / 60);
+    
+    var remainingSeconds = wholeSeconds % 60;
+    var output = minutes + ':';
+    
+    if (remainingSeconds < 10) {
+        output += '0';   
+    }
+    
+    output += remainingSeconds;
+    return output;
+};
+
  var updateSeekBarWhileSongPlays = function() {
      if (currentSoundFile) {
          // #10
@@ -131,6 +157,7 @@ var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
              var $seekBar = $('.seek-control .seek-bar');
  
              updateSeekPercentage($seekBar, seekBarFillRatio);
+             
          });
      }
  };
@@ -285,6 +312,7 @@ var currentVolume = 80;
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
 var $playPause = $('.main-controls .play-pause');
+
  $(document).ready(function() {
      setCurrentAlbum(albumPicasso);
      setupSeekBars();
