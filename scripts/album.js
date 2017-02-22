@@ -39,7 +39,7 @@ var createSongRow = function(songNumber, songName, songLength) {
  
     var $row = $(template); 
     var clickHandler = function() {
-	var songNumber = $(this).attr('data-song-number');
+	var songNumber = parseInt($(this).attr('data-song-number'));
 
 	if (currentlyPlayingSongNumber !== null) {
         var currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
@@ -50,7 +50,6 @@ var createSongRow = function(songNumber, songName, songLength) {
     currentSoundFile.play();
     updateSeekBarWhileSongPlays();
     currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
-    
     
     var $volumeFill = $('.volume .fill');
     var $volumeThumb = $('.volume .thumb');
@@ -66,7 +65,7 @@ var createSongRow = function(songNumber, songName, songLength) {
                 $(this).html(pauseButtonTemplate);
                 $('.main-controls .play-pause').html(playerBarPauseButton);
                 currentSoundFile.play();
-            } else {
+            } else if (currentSoundFile) {
                 $(this).html(playButtonTemplate);
                 $('.main-controls .play-pause').html(playerBarPlayButton);
                 currentSoundFile.pause();   
@@ -292,6 +291,9 @@ var togglePlayFromPlayerBar = function() {
          currentSoundFile.play();
      } else if(currentSoundFile) {
          $(this).html(playButtonTemplate);
+         $('.main-controls .play-pause').html(playerBarPlayButton);
+         getSongNumberCell(currentlyPlayingSongNumber).html(playButtonTemplate);
+         currentSoundFile.pause();          $(this).html(playButtonTemplate);
          $('.main-controls .play-pause').html(playerBarPlayButton);
          getSongNumberCell(currentlyPlayingSongNumber).html(playButtonTemplate);
          currentSoundFile.pause();   
